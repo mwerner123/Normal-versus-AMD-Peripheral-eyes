@@ -21,7 +21,11 @@ In this section, give a brief a description of your project and its goal, what d
 ### Introduction 
 In the first paragraph, describe the problem addressed, its significance, and some background to motivate the problem.
 
+<<<<<<< HEAD
 #####Genome wide association studies have revealed single-nucleotide polymorphisms across a wide range of eye disease including macular degeneration. Among these genes CFH, C3 and CFB are known to be involved in age-related macular degeneration.  However many other SNPs are in close proximity in genomics regions, which makes it hard to ascertain the causative genes as well as their functional role.  Therefore whole transcriptome sequencing through RNA-seq provides an approach for analysing the genetic variations between different layers and tissues of the eyes. The macula with the hightest density of neurons is responsible for central vision, the neurosensory retina is reponsible for processing and sending images to the brain and is a part of the central brain. The retina pigment epithelium and choroidal vasculatur are the main support sustem for the photoreceptors. The marked differences in the tissue functions in the eye might underly different biological processes important in maintaining the health of the photoreceptors and vision. Previous studies have shown significant differential expression between the tissues (Retina versus RCS) and the layers of the normal eyes (peripheral versus macular layers). One of the challenges in macular degeneration is defining the role that the genes (whether obtained through GWAS studies or RNA-seq) play in the disease. In this study I am analysing the differential expression between Normal and AMD eyes from whole transcriptome sequencing to determine the genes and functional pathway enrichement between normal and AMD eyes that might help further understand the biology of the disease.
+=======
+#####Previous studies have shown significant differential expression between the tissues of the normaleyes (Retina versus RCS) and modest differentiation between the layers of eyes (peripheral versus macular layers). Genome wide association studies have revealed single nucleotide polymorphisms across a wide range of eye disease including macular degeneration.  Among these genes CFH, C3 and CFB are known to be involved in age-related macular degeneration. One of the challenges in macular degeneration is defining the role that the genes (whether obtained through GWAS studies or RNA-seq) play in the disease. In this study I am analysing the differential expression between Normal and AMD eyes to determine the genes and pathways that might lead to disease. 
+>>>>>>> e0df9148eda1cab6996fa199dea53bc0f316c480
 
 In the second paragraph, explain why your problem is interdisciplinary, what fields can contribute to its understanding, and incorporate background related to what you learned from meeting with faculty/staff.
 
@@ -37,7 +41,10 @@ Describe your results and include relevant tables, plots, and code/comments used
 
 ```{r}
 #Exploratory data analysis of Normal versus AMD peripheral retina cuffdiff analysed using CummerRbund:
+<<<<<<< HEAD
 library(cummeRbund)
+=======
+>>>>>>> e0df9148eda1cab6996fa199dea53bc0f316c480
 cuff <- readCufflinks(dir="C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/Cuffdiff-Analysis/Normal-vs-AMD-Retina/cuffdiff/", rebuild = TRUE)
 cuff
 
