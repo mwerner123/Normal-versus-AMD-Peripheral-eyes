@@ -1,0 +1,90 @@
+---
+title: "EPID 600 Project Template"
+author: Malela Werner
+output: html_document
+---
+
+Use this template to complete your project throughout the course. Your Final Project presentation in class will be based on the contents of this document. Due dates:
+- Topic choice: 9/18/15
+- List of faculty/staff to be contacted: 10/2/15
+- Complete overview with data source to address a specific problem identified: 10/16/15
+- Introduction: 11/9/15
+- Methods and Results draft: 11/23/15
+- Final Document: 12/11/15
+
+### Overview
+In this section, give a brief a description of your project and its goal, what data you are using to complete it, and what three faculty/staff in different fields you have spoken to about your project with a brief summary of what you learned from each person. Include a link to your final project GitHub repository.
+
+#####Age related macular degeneration (AMD) is a disease that is prevalent among the elderly, especially after the age of 60 and can lead to blindness. Studying the genetic variation and biological pathways involved in age-related macular degeneration will help further understand the underlying biology of the normal eyes and regulatory expression of the normal eye and can serve as a guide in treatment strategies.  Using data that have been generated in my research, I will analysize RNA-seq data for differential expression of genes between Normal and AMD eyes emanating from the peripheral layer and including the human neurosensory retina and the retina pigment epithelium (RPE)/choroid/sclera tissue (RCS).  This will be followed by gene set pathway analysis to obtain more biological insight of the pathways involved in macular degeneration.  For this work I have been in constant communication with Dr. Dwight Stambolian from the department of ophthalmology, Dr. Mingyao Li from the department of biostatistics and epidemiology, along with other staff members of the kirby center lab: David Cho, Adam Wenocur, Dr. Randy Zauhar and Dr. Lifeng Tian from the center of applied genomics.
+[mwerner](https://github.com/mwerner123/Normal-versus-AMD-Peripheral-eyes)
+
+### Introduction 
+In the first paragraph, describe the problem addressed, its significance, and some background to motivate the problem.
+
+#####Previous studies have shown significant differential expression between the tissues of the normaleyes (Retina versus RCS) and modest differentiation between the layers of eyes (peripheral versus macular layers). Genome wide association studies have revealed single nucleotide polymorphisms across a wide range of eye disease including macular degeneration.  Among these genes CFH, C3 and CFB are known to be involved in age-related macular degeneration. One of the challenges in macular degeneration is defining the role that the genes (whether obtained through GWAS studies or RNA-seq) play in the disease. In this study I am analysing the differential expression between Normal and AMD eyes to determine the genes and pathways that might lead to disease. 
+
+In the second paragraph, explain why your problem is interdisciplinary, what fields can contribute to its understanding, and incorporate background related to what you learned from meeting with faculty/staff.
+
+#####Studying the differential expression of the eyes is interdisciplinary as, like with other genomic analysis it requires an understanding of the currently know biology of the eye and its significance, a sound statitistical approach to be able to infer changes in expression as well as an update on the different software and platform to undertake the take.  Through my collaboration with Dr. Stambolian, Dr. Mingyao Li and members of the lab listed above I am able to get feedbacks on guiding approaches for understanding the data.  
+
+### Methods
+In the first paragraph, describe the data used and general methodological approach. Subsequently, incorporate full R code necessary to retrieve and clean data, and perform analysis. Be sure to include a description of code so that others (including your future self) can understand what you are doing and why.
+
+#####RNA-seq was performed on Non-AMD and AMD post mortem eyes using paired-end reads.  Quality control analysis of the reads was performed on the resulting fastq file using fastqC.  Alignment of the reads to hg19 human genome build was performed with the GSNAP alignment software.  Further RNA quality control was performed with RNASeQC.  Differential expression of the samples (5 AMD eyes and 7 normal eyes) was evaluated using Cuffdiff.  Differential expression was also evaluated with EdgeR and DESeq to look for overlap in methods.  Set set enrichment analysis was performed with GSEA to look at biological pathways that are differentially expressed between Normal and AMD eyes in retina and RCS tissues of the peripheral eye
+
+### Results
+Describe your results and include relevant tables, plots, and code/comments used to obtain them. End with a brief conclusion of your findings related to the question you set out to address.
+
+```{r}
+#Exploratory data analysis of Normal versus AMD peripheral retina cuffdiff analysed using CummerRbund:
+cuff <- readCufflinks(dir="C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/Cuffdiff-Analysis/Normal-vs-AMD-Retina/cuffdiff/", rebuild = TRUE)
+cuff
+
+#Density plot to access the distribution of fpkm accross genes
+dens <- csDensity(genes(cuff))
+dens
+
+#density plot showing the biological replicates for each condition 
+densRep <- csDensity(genes(cuff), replicates = TRUE)
+densRep
+
+#To look for outliers among the samples.  The samples in general seem very varied
+b <- csBoxplot(genes(cuff))
+b
+brep <- csBoxplot(genes(cuff), replicates = TRUE)
+brep
+
+#To look for sample clustering and further analysis of outliers.  The dendrogram shows that the AMD and Normal eyes cluster separately
+dend <- csDendro(genes(cuff))
+den.rep <- csDendro(genes(cuff), replicates = T)
+
+#Pairs plot shows the relationship between the Normal and AMD eyes.  
+spair <- csScatter(genes(cuff), "Normal_Peripheral_Retina", "AMD_Peripheral_Retina", smooth = T)
+spair
+```
+
+```{r}
+#Differential expression comparing Cuffdiff, EdgeR and DeSeq2.  
+edgData <- read.csv("C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/HTSeq-Str-reverse/Retina/EdgeR_PR_filtered_unpaired_DE.csv",stringsAsFactors = FALSE, sep = ",", header = TRUE)
+Cuffdiffdata <- read.csv("C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/Cuffdiff-Analysis/Normal-vs-AMD-Retina/Cuffdiff_PR_gene_exp_Significant.csv",stringsAsFactors = FALSE, sep = ",", header = TRUE)
+DESEq2data <- read.csv("C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/HTSeq-Str-reverse/Retina/DE_Retina-Normal-vs-AMD_DESeq2.csv", stringsAsFactors = FALSE, sep = ",", header = TRUE)
+str(edgData)
+str(Cuffdiffdata)
+str(DESEq2data)
+Cuffdiffdatastatus <- as.factor(Cuffdiffdata[["status"]])
+Cuffdiffdata$log2FC <- as.numeric(Cuffdiffdata[["log2FC"]])
+Cuffdiffdata$test_stat <- as.numeric(Cuffdiffdata[["test_stat"]])
+Cuffdiffdata$significant <- as.factor(Cuffdiffdata[["significant"]])
+
+library(edgeR)
+library(xlsx)
+library(gplots)
+library(VennDiagram)
+library(jpeg)
+venn(list("Cuffdiff DE" = Cuffdiffdata$EnsID, "EdgeR DE" = edgData$EnsID, "DESeq2" = DESEq2data$EnsID))
+
+#Venn Diagram show 180 genes where commonly differentially expressed between Normal and AMD retina.   
+
+```
+
+
