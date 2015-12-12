@@ -1,0 +1,13 @@
+files	group	description
+TR1-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR5-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR7-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR9-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR11-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR13-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR15-HTseq-reverse.txt	NPR	NormalPeripheralRetina
+TR17-HTseq-reverse.txt	AMDPR	AMDPeripheralRetina
+TR19-HTseq-reverse.txt	AMDPR	AMDPeripheralRetina
+TR21-HTseq-reverse.txt	AMDPR	AMDPeripheralRetina
+TR23-HTseq-reverse.txt	AMDPR	AMDPeripheralRetina
+TR25-HTseq-reverse.txt	AMDPR	AMDPeripheralRetina
