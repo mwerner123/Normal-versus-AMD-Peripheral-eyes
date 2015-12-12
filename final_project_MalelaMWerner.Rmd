@@ -15,84 +15,626 @@ Use this template to complete your project throughout the course. Your Final Pro
 ### Overview
 In this section, give a brief a description of your project and its goal, what data you are using to complete it, and what three faculty/staff in different fields you have spoken to about your project with a brief summary of what you learned from each person. Include a link to your final project GitHub repository.
 
-#####Age related macular degeneration (AMD) is a disease that is prevalent among the elderly, especially after the age of 60 and can lead to blindness. Studying the genetic variation and biological pathways involved in age-related macular degeneration will help further understand the underlying biology of the normal eyes and regulatory expression of the normal eye and can serve as a guide in treatment strategies.  Using data that have been generated in my research, I will analysize RNA-seq data for differential expression of genes between Normal and AMD eyes emanating from the peripheral layer and including the human neurosensory retina and the retina pigment epithelium (RPE)/choroid/sclera tissue (RCS).  This will be followed by gene set pathway analysis to obtain more biological insight of the pathways involved in macular degeneration.  For this work I have been in constant communication with Dr. Dwight Stambolian from the department of ophthalmology, Dr. Mingyao Li from the department of biostatistics and epidemiology, along with other staff members of the kirby center lab: David Cho, Adam Wenocur, Dr. Randy Zauhar and Dr. Lifeng Tian from the center of applied genomics.
+#####Age related macular degeneration (AMD) is a disease that is prevalent among the elderly, especially after the age of 60 and can lead to blindness. Studying the genetic variations and biological pathways involved in age-related macular degeneration will help further understand the underlying biology of the normal eyes and its regulation and can serve as a guide in implementing new treatment strategies. Using data that has been generated in my research, I analysize RNA-seq results from different tissues of post mortem eyes, retina and retinal pigment epithelium/choroid/sclera tissue (RCS), for differential expression of genes between Normal and AMD eyes.  This work is motivated by genome wide association studies (GWAS) which implicated several single nucleotide polymorphisms (SNPs) with AMD. For my current research I am interest in understanding the mechanism through which a gene discovered through GWAS might be implicated in AMD. For the purpose of this report I will refer to this gene as crispr or query gene as the study is still underway. For this work I am in constant communication with my principle investigator, Dr. Dwight Stambolian from the department of ophthalmology, Dr. Mingyao Li from the department of biostatistics and epidemiology, along with other staff members of the kirby center lab: David Cho, Adam Wenocur, Dr. Randy Zauhar and Dr. Lifeng Tian from the center of applied genomics.
 [mwerner](https://github.com/mwerner123/Normal-versus-AMD-Peripheral-eyes)
 
 ### Introduction 
 In the first paragraph, describe the problem addressed, its significance, and some background to motivate the problem.
 
-<<<<<<< HEAD
-#####Genome wide association studies have revealed single-nucleotide polymorphisms across a wide range of eye disease including macular degeneration. Among these genes CFH, C3 and CFB are known to be involved in age-related macular degeneration.  However many other SNPs are in close proximity in genomics regions, which makes it hard to ascertain the causative genes as well as their functional role.  Therefore whole transcriptome sequencing through RNA-seq provides an approach for analysing the genetic variations between different layers and tissues of the eyes. The macula with the hightest density of neurons is responsible for central vision, the neurosensory retina is reponsible for processing and sending images to the brain and is a part of the central brain. The retina pigment epithelium and choroidal vasculatur are the main support sustem for the photoreceptors. The marked differences in the tissue functions in the eye might underly different biological processes important in maintaining the health of the photoreceptors and vision. Previous studies have shown significant differential expression between the tissues (Retina versus RCS) and the layers of the normal eyes (peripheral versus macular layers). One of the challenges in macular degeneration is defining the role that the genes (whether obtained through GWAS studies or RNA-seq) play in the disease. In this study I am analysing the differential expression between Normal and AMD eyes from whole transcriptome sequencing to determine the genes and functional pathway enrichement between normal and AMD eyes that might help further understand the biology of the disease.
-=======
-#####Previous studies have shown significant differential expression between the tissues of the normaleyes (Retina versus RCS) and modest differentiation between the layers of eyes (peripheral versus macular layers). Genome wide association studies have revealed single nucleotide polymorphisms across a wide range of eye disease including macular degeneration.  Among these genes CFH, C3 and CFB are known to be involved in age-related macular degeneration. One of the challenges in macular degeneration is defining the role that the genes (whether obtained through GWAS studies or RNA-seq) play in the disease. In this study I am analysing the differential expression between Normal and AMD eyes to determine the genes and pathways that might lead to disease. 
->>>>>>> e0df9148eda1cab6996fa199dea53bc0f316c480
+#####Genome wide association studies have revealed single-nucleotide polymorphisms across a wide range of eye disease including macular degeneration. Among these genes CFH, C3 and CFB are known to be involved in age-related macular degeneration.  However many other SNPs are in close proximity in genomics regions, which makes it hard to ascertain the causative genes as well as their functional role.  Therefore whole transcriptome sequencing through RNA-seq provides an approach for analysing the genetic variations between different layers and tissues of the eyes. The macula with the hightest density of neurons is responsible for central vision, the neurosensory retina is reponsible for processing and sending images to the brain and is a part of the central brain. The retina pigment epithelium and choroidal vasculatur are the main support sustem for the photoreceptors. The marked differences in the tissue functions in the eye might underly different biological processes important in maintaining the health of the photoreceptors and vision. Previous studies in normal eyes (without disease) have shown significant differential expression between the tissues (Retina versus RCS) and the layers of the normal eyes (peripheral versus macular layers). One of the challenges in macular degeneration is defining the role that the genes play in the disease. In this study I am analysing the differential expression between Normal and AMD eyes from whole transcriptome sequencing to determine the genes that might help further understand the biology of the disease. I am also studying the association between a knockout gene of interest and AMD.  Our hypothesis is that mutating our gene of interest and studying its effect on global gene expression will provide a list of genes that influence AMD. 
 
 In the second paragraph, explain why your problem is interdisciplinary, what fields can contribute to its understanding, and incorporate background related to what you learned from meeting with faculty/staff.
 
-#####Studying the differential expression of the eyes is interdisciplinary as, like with other genomic analysis it requires an understanding of the currently know biology of the eye and its significance, a sound statitistical approach to be able to infer changes in expression as well as an update on the different software and platform to undertake the take.  Through my collaboration with Dr. Stambolian, Dr. Mingyao Li and members of the lab listed above I am able to get feedbacks on guiding approaches for understanding the data.  
+#####Studying the differential expression of the eyes is an interdisciplinary undertaking. Like with other genomic analysis it requires an understanding of the currently known biology of the eye and its significance, a sound statitistical approach to be able to infer changes in expression as well as a constant update on the different software and platforms to undertake the analysis.  Through my collaboration with Dr. Stambolian, Dr. Mingyao Li, members of the lab listed above, and of course the Epid600 class, I am able to get feedbacks on guiding approaches for understanding the data.  
 
 ### Methods
 In the first paragraph, describe the data used and general methodological approach. Subsequently, incorporate full R code necessary to retrieve and clean data, and perform analysis. Be sure to include a description of code so that others (including your future self) can understand what you are doing and why.
 
-#####RNA-seq was performed on Non-AMD and AMD post mortem eyes using paired-end reads.  Quality control analysis of the reads was performed on the resulting fastq file using fastqC.  Alignment of the reads to hg19 human genome build was performed with the GSNAP alignment software.  Further RNA quality control was performed with RNASeQC.  Differential expression of the samples (5 AMD eyes and 7 normal eyes) was evaluated using Cuffdiff.  Differential expression was also evaluated with EdgeR and DESeq to look for overlap in methods.  Set set enrichment analysis was performed with GSEA to look at biological pathways that are differentially expressed between Normal and AMD eyes in retina and RCS tissues of the peripheral eye
+#####RNA-seq was performed on seven Non-AMD and five AMD post mortem eyes in Retina and RCS tissues as well as two biological replicates of a knockout gene of interest and one wild type sample using paired-end reads.  The gene of interest was knockout in a cell line with crispr cas9 guide RNA. The mutants showed sequence deletion and insertion in the exon of interested as well as in promoter region. Preliminary quantitative PCR analysis prior to RNA sequence showed two and 6 fold expression changes between wild type sample and mutants. The RNA-seq data for the knockout presented heres is preliminary as we work to isolated more cell knockouts with crispr cas9 technology to expand our biological replicates. For each resulting fastq file, quality control analysis of the reads was performed using fastqC.  Alignment of the reads to hg19 human genome build was performed with the GSNAP alignment software.  Further RNA quality control was performed with RNASeQC to check for rate of ribosomal RNA and read duplications.  Differential expression of the samples was evaluated using DESeq2 and Cuffdiff.  Here I present the results of the Deseq2 analysis and compare them to cuffdiff.  DESeq2 uses a count base approach while cuffdiff used a fragment per kilobase per million (FPKM) approach to calculate gene expression. The rational for comparing these two methods to arrive at a list of differentially expressed genes that might be implicated in AMD is that obtaining an agreement between two methods might provide greater credence for the implication of our gene of interest in AMD than just one.  As illustrated below, the analysis for differential expression is first provided for eyes (retina then RCS) using DESeq2 followed by a comparison between DESeq2 and Cuffdiff and comparison between crispr gene of interest and eye samples.
 
-### Results
+#Results
 Describe your results and include relevant tables, plots, and code/comments used to obtain them. End with a brief conclusion of your findings related to the question you set out to address.
 
 ```{r}
-#Exploratory data analysis of Normal versus AMD peripheral retina cuffdiff analysed using CummerRbund:
-<<<<<<< HEAD
-library(cummeRbund)
-=======
->>>>>>> e0df9148eda1cab6996fa199dea53bc0f316c480
-cuff <- readCufflinks(dir="C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/Cuffdiff-Analysis/Normal-vs-AMD-Retina/cuffdiff/", rebuild = TRUE)
-cuff
+library('stringr')
+library('dplyr')
+library('DESeq2')
+library('reshape2')
+library('ggplot2')
+library('vsn')
+library('xlsx')
+library('gplots')
+library("pheatmap")
+library("genefilter")
+library("geneplotter")
+```
 
-#Density plot to access the distribution of fpkm accross genes
-dens <- csDensity(genes(cuff))
-dens
+##DESeq2 Differential gene analysis of Retina data: Normal versus AMD
 
-#density plot showing the biological replicates for each condition 
-densRep <- csDensity(genes(cuff), replicates = TRUE)
-densRep
+```{r}
+#Construct DESeq2 Object for Retina data
+setwd("C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PR/")
+HTFilesDir <- "C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PR/"
+directory = '.'
+HTFiles <- list.files(HTFilesDir, pattern = '*HTseq-reverse.txt')
+SampleNO <- str_sub(HTFiles, 1, 4)
+SampleNO
+condition <- c(rep('Normal', 7), rep('AMD', 5))
+condition
 
-#To look for outliers among the samples.  The samples in general seem very varied
-b <- csBoxplot(genes(cuff))
-b
-brep <- csBoxplot(genes(cuff), replicates = TRUE)
-brep
+libraryName <- paste(condition, "-", SampleNO, sep = "") 
 
-#To look for sample clustering and further analysis of outliers.  The dendrogram shows that the AMD and Normal eyes cluster separately
-dend <- csDendro(genes(cuff))
-den.rep <- csDendro(genes(cuff), replicates = T)
+metadata <- data.frame(SampleNO = SampleNO, condition = condition, libraryName = libraryName)
+metadata = mutate(metadata, countFile =  paste0(metadata$SampleNO, "-HTseq-reverse.txt"))
+metadata
+metadata <- lapply(metadata, as.character)
 
-#Pairs plot shows the relationship between the Normal and AMD eyes.  
-spair <- csScatter(genes(cuff), "Normal_Peripheral_Retina", "AMD_Peripheral_Retina", smooth = T)
-spair
+sampleTable <- data.frame(sampleName = metadata$libraryName, fileName = metadata$countFile, condition = metadata$condition, sampleNO = metadata$SampleNO)
+
+ddsHTSeq<-DESeqDataSetFromHTSeqCount(sampleTable=sampleTable, directory=directory, design=~condition)
+ddsHTSeq
+assay(head(ddsHTSeq))
+coldata <- colData(ddsHTSeq)
+coldata
+
+rowRanges(ddsHTSeq)
+mcols(rowRanges(ddsHTSeq))
 ```
 
 ```{r}
-#Differential expression comparing Cuffdiff, EdgeR and DeSeq2.  
-edgData <- read.csv("C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/HTSeq-Str-reverse/Retina/EdgeR_PR_filtered_unpaired_DE.csv",stringsAsFactors = FALSE, sep = ",", header = TRUE)
-Cuffdiffdata <- read.csv("C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/Cuffdiff-Analysis/Normal-vs-AMD-Retina/Cuffdiff_PR_gene_exp_Significant.csv",stringsAsFactors = FALSE, sep = ",", header = TRUE)
-DESEq2data <- read.csv("C:/Users/malmwamu/Documents/Bioinformatics/RNAseq-Peri/HTSeq-Str-reverse/Retina/DE_Retina-Normal-vs-AMD_DESeq2.csv", stringsAsFactors = FALSE, sep = ",", header = TRUE)
-str(edgData)
-str(Cuffdiffdata)
-str(DESEq2data)
-Cuffdiffdatastatus <- as.factor(Cuffdiffdata[["status"]])
-Cuffdiffdata$log2FC <- as.numeric(Cuffdiffdata[["log2FC"]])
-Cuffdiffdata$test_stat <- as.numeric(Cuffdiffdata[["test_stat"]])
-Cuffdiffdata$significant <- as.factor(Cuffdiffdata[["significant"]])
+#Exploratory data analysis of Retina data: Normal versus AMD eyes
 
-library(edgeR)
-library(xlsx)
-library(gplots)
-library(VennDiagram)
-library(jpeg)
-venn(list("Cuffdiff DE" = Cuffdiffdata$EnsID, "EdgeR DE" = edgData$EnsID, "DESeq2" = DESEq2data$EnsID))
+#Trim genes with low read counts
+ddsHTSeq<- ddsHTSeq[rowSums(counts(ddsHTSeq)) > 1, ]
+nrow(ddsHTSeq)
+head(rownames(ddsHTSeq))
 
-#Venn Diagram show 180 genes where commonly differentially expressed between Normal and AMD retina.   
+#estimate size factors to account for differences in sequencing depth. 
+ddsHTSeq <- estimateSizeFactors(ddsHTSeq)
+sizeFactors(ddsHTSeq)
+colSums(counts(ddsHTSeq))
+
+##Transform data with rlog (regularized-logarithm transformation) to make data more homoskedastic
+rld <- rlog(ddsHTSeq) 
+par( mfrow = c( 1, 2 ) )
+plot(log2(counts(ddsHTSeq, normalized=TRUE)[,1:2] + 1),
+     pch=16, cex=0.3)
+plot(assay(rld)[,1:2],
+     pch=16, cex=0.3)
+
+boxplot(log2(counts(ddsHTSeq))+1) #not normalized
+boxplot(assay(rld)) #normalized data
+
+#PCA to look at variation between samples.  
+plotPCA(rld, intgroup="condition")
+
+plotPCA(rld, intgroup=c("condition", "sampleNO"))
+
+#dendrogram cluster
+plot(hclust(dist(t(assay(rld)))), labels=colData(rld)$condition)
+
+#compare density distribution of data
+multidensity(counts(ddsHTSeq, normalized = T), xlab='mean counts', xlim=c(0,50), pch=16, cex=0.3)
+```
+
+```{r}
+###Perform differential gene expression on Retina data: Normal versus AMD eyes
+
+design(ddsHTSeq) <- ~condition
+levels(ddsHTSeq$condition)
+ddsHTSeq$condition <- relevel(ddsHTSeq$condition, "AMD") #The reference condition was chosen as AMD instead of Normal in order to match the direction of fold changes in the cuffdiff file in later comparison between DESeq2 and cuffdiff. 
+levels(ddsHTSeq$condition)
+
+ddsHTSeq <- DESeq(ddsHTSeq)
+res <- results(ddsHTSeq)
+head(res)
+summary(res)
+
+#Display #genes with adjusted p-value < 0.05
+res2 <- results(ddsHTSeq, alpha = 0.05)
+head(res2)
+table(res2$padj < 0.05)
+summary(res2)
+```
+
+```{r}
+####Plot differential gene expression for Retina data: Normal versus AMD
+
+#histogram distribution of pvalues and FDR adjucted p-values:
+hist(res$pvalue, col = "lavender", ylim = c(0,10000), main = "Normal vs AMD eyes Retina tissue p-value", xlab = "p-value")
+hist(res$padj, col = "lavender", ylim = c(0,7000), main = "Normal vs AMD eyes Retina tissue adjusted p-value", xlab = "adj-p-value")
+
+###MA plot of differentially expressed genes
+plotMA(res2, ylim = c(-5,5))
+
+###MA plot of differentially expressed genes with log fold change greater than 1
+res.thr <- results(ddsHTSeq, alpha = 0.05, lfcThreshold=0.5)
+summary(res.thr)
+plotMA(res.thr, ylim=c(-5,5))
+
+###Sorted differential expression genes
+resSort <- res[order(res$padj),]
+head(resSort)
+
+###heatmap of top 30 differentially expressed genes
+topgenes <- head(rownames(resSort),30)
+mat <- assay(rld)[topgenes,]
+mat <- mat - rowMeans(mat)
+df <- as.data.frame(colData(ddsHTSeq)[,c("condition", "sampleNO")])
+pheatmap(mat, annotation_col=df)
 
 ```
+
+###Overlap of DE genes between DESeq2 and Cuffdiff For Retina 
+```{r}
+###PR DESeq2 versus Cuffdiff
+PR_Cuffdiff <- read.csv("C:/Users/malmwamu/Documents/Epid600/Epid600-project/PR-Cuffdiff/PR-AMD-vs-Normal_all-genes.csv", header = TRUE, sep = ",")
+PR_DESeq2 <- read.csv("C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PR/Normal-AMD-Retina-Allgenes-results_DESeq2.csv", header = TRUE, sep = ",")
+PR_Cuffdiff_Sig <- read.xlsx("C:/Users/malmwamu/Documents/Epid600/Epid600-project/PR-Cuffdiff/PR-AMD-vs-Normal_Significant-genes.xlsx", 1)
+PR_DESeq2_Sig <- read.xlsx("C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PR/Retina-Siggenes-DESeq2.xlsx", 1)
+
+str(PR_DESeq2)
+str(PR_Cuffdiff)
+str(PR_DESeq2_Sig)
+str(PR_Cuffdiff_Sig)
+PR_DESeq2$GeneID <- as.character(PR_DESeq2[["GeneID"]])
+PR_Cuffdiff$GeneID <- as.character(PR_Cuffdiff[["GeneID"]])
+PR_DESeq2_Sig$GeneID <- as.character(PR_DESeq2_Sig[["GeneID"]])
+PR_Cuffdiff_Sig$GeneID <- as.character(PR_Cuffdiff_Sig[["GeneID"]])
+
+# Common DE between Retina DESeq2 and Cuffdiff
+venn(list("Retina_DESeq2_Significant" = PR_DESeq2_Sig$GeneID, "Retina_Cuffdiff_Significant" = PR_Cuffdiff_Sig$GeneID))
+#Among the significant genes, 421 were common between Cuffdiff and Deseq2 for retina samples
+
+#extract total genes (Significant and non significant) that are common between cuffdiff and DESeq2 for retina samples
+commonPR_All_DESEq2_Cuffdiff <- PR_DESeq2[PR_DESeq2$GeneID %in% PR_Cuffdiff$GeneID,]
+commonPR_All_Cuffdiff_DESeq2 <- PR_Cuffdiff[PR_Cuffdiff$GeneID %in% PR_DESeq2$GeneID,]
+
+#Merge to keep only the  total genes present in both cuffdiff and DESeq2 and also to be able to obtain gene symbols via cuffdiff results
+PR_cuffDes <- merge(commonPR_All_Cuffdiff_DESeq2[,c(1,3,10,13)], commonPR_All_DESEq2_Cuffdiff[,c(1,3,7)])
+
+#Remove NAs from merged dataframe and rename columns
+PR_cuffDes <- PR_cuffDes[complete.cases(PR_cuffDes),]
+PR_cuffDes <- rename(PR_cuffDes, c("q_value" = "Cuffdiff_adjp", "padj" = "DESeq2_adjp"))
+PR_cuffDes <- rename(PR_cuffDes, c("log2.fold_change." = "log2FC_Cuffdiff", "log2FoldChange" = "log2FC_DESeq2"))
+
+#correlation coefficient, linear model fit and confident interval of fit. 
+cor(PR_cuffDes$Cuffdiff_adjp, PR_cuffDes$DESeq2_adjp, use = "complete.obs")
+ 
+
+fit_PR <- lm(Cuffdiff_adjp ~ DESeq2_adjp, data=PR_cuffDes)
+fit_PR
+confint(fit_PR)
+summary(fit_PR)
+
+#log plot of cuffdiff adjusted P versus DESeq2 adjusted P 
+ggplot(data = PR_cuffDes, aes(x = log(Cuffdiff_adjp), y = log(DESeq2_adjp))) + geom_point(shape = 21) + geom_smooth(method=lm, se=FALSE)
+#From the graph many genes that were not significantly differentially expressed with DESeq were also so not significantly expressed with cuffdiff as seen in the upper right hand corner aggregation.  The P values determined by DESeq2 were much higher than those determined by Cuffdiff.  Since Cuffdiff and DESeq2 have a difference range of adjusted p-values, it is difficult to make a head to head comparison of the values.  It is interesting to see that there are a number of genes that have p-value less than 0.05 in both settings 
+
+###Compare fold change values between Cuffdiff and DESeq2 for genes with adjusted p-values < 2 and linear fold change of at least 2.
+
+#convert characters to NA from log2FC_cuffdiff and remove NAs.
+PR_cuffDes$log2FC_Cuffdiff <- as.numeric(as.character(PR_cuffDes$log2FC_Cuffdiff))
+PR_cuffDes <- PR_cuffDes[complete.cases(PR_cuffDes),]
+
+#convert infinite values to NA from log2FC_cuffdiff and remove NAs.
+is.na(PR_cuffDes) <- sapply(PR_cuffDes, is.infinite)
+PR_cuffDes <- PR_cuffDes[complete.cases(PR_cuffDes),]
+
+PR_cuffDes_FC <- filter(PR_cuffDes, abs(log2FC_Cuffdiff) > 1 & abs(log2FC_DESeq2) > 1)
+
+PR_cuffDes_FC_Sig <- filter(PR_cuffDes_FC, Cuffdiff_adjp < 0.05 & DESeq2_adjp < 0.05)
+#277 genes had a log2 fold change of 1 (linear fold change of 2) and an adjusted pvalue of 0.05 in both cuffdiff and Deseq2 in normal versus amd. 
+
+ggplot(data = PR_cuffDes_FC_Sig, aes(x = log2FC_Cuffdiff, y = log2FC_DESeq2)) + geom_point(shape = 21) + geom_smooth(method=lm, se=FALSE) + theme(axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20))
+
+cor(PR_cuffDes_FC_Sig$log2FC_Cuffdiff, PR_cuffDes_FC_Sig$log2FC_DESeq2, use = "complete.obs")
+#The correlation for log2FC between cuffdiff and DESeq2 was very strong with these 277 genes. 
+
+fit2PR <- lm(log2FC_Cuffdiff ~ log2FC_DESeq2, data=PR_cuffDes_FC_Sig)
+fit2PR
+confint(fit2PR)
+summary(fit2PR)
+
+```
+
+
+##DESeq2 Differential gene analysis of RCS (RPC/Choroid/Sclera) data: Normal versus AMD eyes
+
+```{r}
+setwd("C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PRCS/")
+HTFilesDir <- "C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PRCS/"
+directory = '.'
+HTFiles <- list.files(HTFilesDir, pattern = '*HTseq-reverse.txt')
+SampleNO <- str_sub(HTFiles, 1, 4)
+SampleNO
+condition <- c(rep('Normal-RCS', 7), rep('AMD-RCS', 5))
+condition
+
+libraryName <- paste(condition, "-", SampleNO, sep = "") 
+
+metadata <- data.frame(SampleNO = SampleNO, condition = condition, libraryName = libraryName)
+metadata = mutate(metadata, countFile =  paste0(metadata$SampleNO, "-HTseq-reverse.txt"))
+metadata
+metadata <- lapply(metadata, as.character)
+
+sampleTable <- data.frame(sampleName = metadata$libraryName, fileName = metadata$countFile, condition = metadata$condition, sampleNO = metadata$SampleNO)
+
+ddsHTSeq<-DESeqDataSetFromHTSeqCount(sampleTable=sampleTable, directory=directory, design=~condition)
+ddsHTSeq
+assay(head(ddsHTSeq))
+coldata <- colData(ddsHTSeq)
+coldata
+
+rowRanges(ddsHTSeq)
+mcols(rowRanges(ddsHTSeq))
+
+```
+
+```{r}
+#Exploratory data analysis of RCS data: Normal versus AMD eyes
+
+#Trim genes with low read counts
+ddsHTSeq<- ddsHTSeq[rowSums(counts(ddsHTSeq)) > 1, ]
+nrow(ddsHTSeq)
+head(rownames(ddsHTSeq))
+
+#estimate size factors to account for differences in sequencing depth. 
+ddsHTSeq <- estimateSizeFactors(ddsHTSeq)
+sizeFactors(ddsHTSeq)
+colSums(counts(ddsHTSeq))
+
+##Transform data with rlog (regularized-logarithm transformation) to make data more homoskedastic
+rld <- rlog(ddsHTSeq) 
+par( mfrow = c( 1, 2 ) )
+plot(log2(counts(ddsHTSeq, normalized=TRUE)[,1:2] + 1),
+     pch=16, cex=0.3)
+plot(assay(rld)[,1:2],
+     pch=16, cex=0.3)
+
+boxplot(log2(counts(ddsHTSeq))+1) #not normalized
+boxplot(assay(rld)) #normalized data
+
+#PCA to look at variation between samples.  
+plotPCA(rld, intgroup="condition")
+
+plotPCA(rld, intgroup=c("condition", "sampleNO"))
+
+#dendrogram cluster
+plot(hclust(dist(t(assay(rld)))), labels=colData(rld)$condition)
+
+#compare density distribution of data
+multidensity(counts(ddsHTSeq, normalized = T), xlab='mean counts', xlim=c(0,50), pch=16, cex=0.3)
+```
+
+```{r}
+###Perform differential gene expression
+
+design(ddsHTSeq) <- ~condition
+levels(ddsHTSeq$condition)
+ddsHTSeq$condition <- relevel(ddsHTSeq$condition, "AMD-RCS") #The reference condition is chose as AMD-RCS to match the reference condition in Cuffdiff data.
+levels(ddsHTSeq$condition)
+
+ddsHTSeq <- DESeq(ddsHTSeq)
+res <- results(ddsHTSeq)
+head(res)
+summary(res)
+
+res2 <- results(ddsHTSeq, alpha = 0.05)
+head(res2)
+table(res2$padj < 0.05)
+summary(res2)
+```
+
+```{r}
+
+#histogram distribution of pvalues and FDR adjucted p-values:
+hist(res$pvalue, col = "lavender", ylim = c(0,10000), main = "Normal vs AMD eyes RCS tissue p-value", xlab = "p-value")
+hist(res$padj, col = "lavender", ylim = c(0,7000), main = "Normal vs AMD eyes RCS tissue adjusted p-value", xlab = "adj-p-value")
+###MA plot of differentially expressed genes
+plotMA(res2, ylim = c(-5,5))
+
+###MA plot of differentially expressed genes with log fold change greater than 1
+res.thr <- results(ddsHTSeq, alpha = 0.05, lfcThreshold=0.5)
+summary(res.thr)
+plotMA(res.thr, ylim=c(-5,5))
+
+###As in the case with retina, there were more down regulated than upregulated genes in RCS for AMD samples
+
+###Sorted differential expression genes
+resSort <- res[order(res$padj),]
+head(resSort)
+
+###heatmap of top 30 differentially expressed genes
+topgenes <- head(rownames(resSort),30)
+mat <- assay(rld)[topgenes,]
+mat <- mat - rowMeans(mat)
+df <- as.data.frame(colData(ddsHTSeq)[,c("condition", "sampleNO")])
+pheatmap(mat, annotation_col=df)
+```
+
+###Overlap of DE genes between DESeq2 and Cuffdiff For RCS 
+
+```{r}
+PRCS_Cuffdiff_Sig <- read.xlsx("C:/Users/malmwamu/Documents/Epid600/Epid600-project/PRCS-cuffdiff/Normal-vs-AMD-RPCS-Sig-genes.xlsx", 1)
+PRCS_DESeq2_Sig <- read.xlsx("C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PRCS/PRCS-Siggenes-DESeq2.xlsx", 1)
+PRCS_Cuffdiff <- read.csv("C:/Users/malmwamu/Documents/Epid600/Epid600-project/PRCS-cuffdiff/Normal-vs-AMD-RPCS-all-genes.csv", header = TRUE, sep = ",")
+PRCS_DESeq2 <- read.csv("C:/Users/malmwamu/Documents/Epid600/Epid600-project/Normal-AMD-PRCS/Normal-AMD-RCS-Allgenes-results_DESeq2.csv", header = TRUE, sep = ",")
+
+str(PRCS_DESeq2_Sig)
+str(PRCS_Cuffdiff_Sig)
+str(PRCS_DESeq2)
+str(PRCS_Cuffdiff)
+PRCS_DESeq2_Sig$GeneID <- as.character(PRCS_DESeq2_Sig[["GeneID"]])
+PRCS_Cuffdiff_Sig$GeneID <- as.character(PRCS_Cuffdiff_Sig[["GeneID"]])
+PRCS_DESeq2$GeneID <- as.character(PRCS_DESeq2[["GeneID"]])
+PRCS_Cuffdiff$GeneID <- as.character(PRCS_Cuffdiff[["GeneID"]])
+
+# Common DE between RCS DESeq2 and Cuffdiff
+venn(list("RCS_DESeq2_Significant" = PRCS_DESeq2_Sig$GeneID, "RCS_Cuffdiff_Significant" = PRCS_Cuffdiff_Sig$GeneID))
+#Among the differentially expressed genes in RCS, 122 were common between cuffdiff and DESeq2
+
+#extract total genes (Significant and non significant) that are common between cuffdiff and DESeq2 for RCS samples
+commonRCS_All_DESEq2_Cuffdiff <- PRCS_DESeq2[PRCS_DESeq2$GeneID %in% PRCS_Cuffdiff$GeneID,]
+commonRCS_All_Cuffdiff_DESeq2 <- PRCS_Cuffdiff[PRCS_Cuffdiff$GeneID %in% PRCS_DESeq2$GeneID,]
+
+#Merge to keep only the  total genes present in both cuffdiff and DESeq2 and also be able to obtain gene symbols via cuffdiff results
+PRCS_cuffDes <- merge(commonRCS_All_Cuffdiff_DESeq2[,c(1,3,10,13)], commonRCS_All_DESEq2_Cuffdiff[,c(1,3,7)])
+
+#Remove NAs from merged dataframe and rename columns
+PRCS_cuffDes <- PRCS_cuffDes[complete.cases(PRCS_cuffDes),]
+PRCS_cuffDes <- rename(PRCS_cuffDes, c("q_value" = "Cuffdiff_adjp", "padj" = "DESeq2_adjp"))
+PRCS_cuffDes <- rename(PRCS_cuffDes, c("log2.fold_change." = "log2FC_Cuffdiff", "log2FoldChange" = "log2FC_DESeq2"))
+
+#correlation coefficient, linear model fit and confident interval of fit. 
+cor(PRCS_cuffDes$Cuffdiff_adjp, PRCS_cuffDes$DESeq2_adjp, use = "complete.obs")
+
+fitRCS <- lm(Cuffdiff_adjp ~ DESeq2_adjp, data=PRCS_cuffDes)
+fitRCS
+confint(fitRCS)
+summary(fitRCS)
+
+#log plot of cuffdiff adjusted P versus DESeq2 adjusted P 
+ggplot(data = PRCS_cuffDes, aes(x = log(Cuffdiff_adjp), y = log(DESeq2_adjp))) + geom_point(shape = 21) + geom_smooth(method=lm, se=FALSE)
+#From the graph as seen in the retina case the P values determined by Cuffdiff were in general higher than those determined DESeq2 in RCS samples.  There was not a strong trend on visual inspection and R2 was small when all the genes (complete cases in both datasets) were accounted for.  
+
+###Compare fold change values between Cuffdiff and DESeq2 for genes with adjusted p-values < 2 and linear fold change of at least 2 in RCS samples.
+
+#convert characters to NA from log2FC_cuffdiff and remove NAs.
+PRCS_cuffDes$log2FC_Cuffdiff <- as.numeric(as.character(PRCS_cuffDes$log2FC_Cuffdiff))
+PRCS_cuffDes <- PRCS_cuffDes[complete.cases(PRCS_cuffDes),]
+
+#convert infinite values to NA from log2FC_cuffdiff and remove NAs.
+is.na(PRCS_cuffDes) <- sapply(PRCS_cuffDes, is.infinite)
+PRCS_cuffDes <- PRCS_cuffDes[complete.cases(PRCS_cuffDes),]
+
+PRCS_cuffDes_FC <- filter(PRCS_cuffDes, abs(log2FC_Cuffdiff) > 1 & abs(log2FC_DESeq2) > 1)
+
+PRCS_cuffDes_FC_Sig <- filter(PRCS_cuffDes_FC, Cuffdiff_adjp < 0.05 & DESeq2_adjp < 0.05)
+#117 genes in RCS samples had a log2 fold change of 1 (linear fold change of 2) and an adjusted pvalue of 0.05 in both cuffdiff and Deseq2 in normal versus amd. 
+
+ggplot(data = PRCS_cuffDes_FC_Sig, aes(x = log2FC_Cuffdiff, y = log2FC_DESeq2)) + geom_point(shape = 21) + geom_smooth(method=lm, se=FALSE) + theme(axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20))
+
+cor(PRCS_cuffDes_FC_Sig$log2FC_Cuffdiff, PRCS_cuffDes_FC_Sig$log2FC_DESeq2, use = "complete.obs")
+#The correlation for log2FC between cuffdiff and DESeq2 was very strong with these 117 genes in RCS samples. 
+
+fit2RCS <- lm(log2FC_Cuffdiff ~ log2FC_DESeq2, data=PRCS_cuffDes_FC_Sig)
+fit2RCS
+confint(fit2RCS)
+summary(fit2RCS)
+#adjusted R-squared = 0.7859
+```
+
+
+##DESeq2 Differential gene analysis of Crispr gene data: Wild versus crispr mutants
+```{r}
+#Construct DESeq2 Object for Crispr gene data
+setwd("C:/Users/malmwamu/Documents/Epid600/Epid600-project/QueryGene/")
+HTFilesDir <- "C:/Users/malmwamu/Documents/Epid600/Epid600-project/QueryGene/"
+directory = '.'
+HTFiles <- list.files(HTFilesDir, pattern = '*reverse.txt')
+SampleNO <- str_sub(HTFiles, 1, 4)
+SampleNO
+condition <- c(rep('Mutant', 2), rep('Wild', 1))
+condition
+
+libraryName <- paste(condition, "-", SampleNO, sep = "") 
+
+metadata <- data.frame(SampleNO = SampleNO, condition = condition, libraryName = libraryName)
+metadata = mutate(metadata, countFile =  paste0(metadata$SampleNO, "-HTseq-reverse.txt"))
+metadata
+metadata <- lapply(metadata, as.character)
+
+sampleTable <- data.frame(sampleName = metadata$libraryName, fileName = metadata$countFile, condition = metadata$condition, sampleNO = metadata$SampleNO)
+
+ddsHTSeq<-DESeqDataSetFromHTSeqCount(sampleTable=sampleTable, directory=directory, design=~condition)
+ddsHTSeq
+assay(head(ddsHTSeq))
+coldata <- colData(ddsHTSeq)
+coldata
+
+rowRanges(ddsHTSeq)
+mcols(rowRanges(ddsHTSeq))
+
+```
+
+```{r}
+#Exploratory data analysis of Crispr gene data: Wild versus Mutant gene
+
+#Trim genes with low read counts
+ddsHTSeq<- ddsHTSeq[rowSums(counts(ddsHTSeq)) > 1, ]
+nrow(ddsHTSeq)
+head(rownames(ddsHTSeq))
+
+#estimate size factors to account for differences in sequencing depth. 
+ddsHTSeq <- estimateSizeFactors(ddsHTSeq)
+sizeFactors(ddsHTSeq)
+colSums(counts(ddsHTSeq))
+
+##Transform data with rlog (regularized-logarithm transformation) to make data more homoskedastic
+rld <- rlog(ddsHTSeq) 
+par( mfrow = c( 1, 2 ) )
+plot(log2(counts(ddsHTSeq, normalized=TRUE)[,1:2] + 1),
+     pch=16, cex=0.3)
+plot(assay(rld)[,1:2],
+     pch=16, cex=0.3)
+
+boxplot(log2(counts(ddsHTSeq))+1) #not normalized
+boxplot(assay(rld)) #normalized data
+
+#PCA to look at variation between samples.  
+plotPCA(rld, intgroup="condition")
+
+plotPCA(rld, intgroup=c("condition", "sampleNO"))
+
+#dendrogram cluster
+plot(hclust(dist(t(assay(rld)))), labels=colData(rld)$condition)
+
+#compare density distribution of data
+multidensity(counts(ddsHTSeq, normalized = T), xlab='mean counts', xlim=c(0,50), pch=16, cex=0.3)
+```
+
+```{r}
+###Perform differential gene expression
+
+design(ddsHTSeq) <- ~condition
+levels(ddsHTSeq$condition)
+ddsHTSeq$condition <- relevel(ddsHTSeq$condition, "Wild") #The reference is chosen as wild to match the reference in Cuffdiff data.
+levels(ddsHTSeq$condition)
+
+ddsHTSeq <- DESeq(ddsHTSeq)
+res <- results(ddsHTSeq)
+head(res)
+summary(res)
+res2 <- results(ddsHTSeq, alpha = 0.05)
+head(res2)
+table(res2$padj < 0.05)
+summary(res2)
+```
+
+```{r}
+####Plot differential gene expression for Crisp gene: Wild versus mutant
+
+#histogram distribution of pvalues and FDR adjucted p-values:
+hist(res$pvalue, col = "lavender", ylim = c(0,5000), main = "Wild vs Mutant crispr gene p-value", xlab = "p-value")
+hist(res$padj, col = "lavender", ylim = c(0,10000), main = "Wild vs Mutant crispr gene adjusted p-value", xlab = "adj-p-value")
+
+###MA plot of differentially expressed genes
+plotMA(res2, ylim = c(-8,5))
+
+###MA plot of differentially expressed genes with log fold change greater than 1
+res.thr <- results(ddsHTSeq, alpha = 0.05, lfcThreshold=0.5)
+summary(res.thr)
+plotMA(res.thr, ylim=c(-8,5))
+
+###Sorted differential expression genes
+resSort <- res[order(res$padj),]
+head(resSort)
+
+###heatmap of top 30 differentially expressed genes
+topgenes <- head(rownames(resSort),30)
+mat <- assay(rld)[topgenes,]
+mat <- mat - rowMeans(mat)
+df <- as.data.frame(colData(ddsHTSeq)[,c("condition", "sampleNO")])
+pheatmap(mat, annotation_col=df)
+```
+
+##Overlap of DE genes between DESeq2 and Cuffdiff For Crispr gene
+
+```{r}
+Query_Cuffdiff_Sig <- read.xlsx("C:/Users/malmwamu/Documents/Epid600/Epid600-project/QueryGene-cuffdiff/QueryGene-Wild-Mutants-Signicant-Diff-Genes.xlsx", 1)
+Query_Cuffdiff <- read.csv("C:/Users/malmwamu/Documents/Epid600/Epid600-project/QueryGene-cuffdiff/QueryGene-all-genes-cuffquant-firststrand.csv", header = TRUE, sep = ",")
+Query_DESeq2_Sig<- read.xlsx("C:/Users/malmwamu/Documents/Epid600/Epid600-project/QueryGene/GeneInterestSig-DESeq2.xlsx", 1)
+Query_DESeq2 <- read.csv("C:/Users/malmwamu/Documents/Epid600/Epid600-project/QueryGene/geneInterest-Allgenes-results-DESeq2.csv", header = TRUE, sep = ",")
+
+str(Query_DESeq2_Sig)
+str(Query_Cuffdiff_Sig)
+str(Query_DESeq2)
+str(Query_Cuffdiff)
+Query_DESeq2$GeneID <- as.character(Query_DESeq2[["GeneID"]])
+Query_Cuffdiff$GeneID <- as.character(Query_Cuffdiff[["GeneID"]])
+Query_DESeq2_Sig$GeneID <- as.character(Query_DESeq2_Sig[["GeneID"]])
+Query_Cuffdiff_Sig$GeneID <- as.character(Query_Cuffdiff_Sig[["GeneID"]])
+
+# Common DE between Crispr gene DESeq2 and Cuffdiff
+venn(list("Query gene DESeq2 Significant" = Query_DESeq2_Sig$GeneID, "Query gene Cuffdiff Significant" = Query_Cuffdiff_Sig$GeneID))
+#There were 51 genes that were commonly differentially expressed between cuffdiff and DESEq2 in crispr gene 
+
+#extract total genes (Significant and non significant) that are common between cuffdiff and DESeq2 for crispr samples
+commonCrispr_All_DESEq2_Cuffdiff <- Query_DESeq2[Query_DESeq2$GeneID %in% Query_Cuffdiff$GeneID,]
+commonCrispr_All_Cuffdiff_DESeq2 <- Query_Cuffdiff[Query_Cuffdiff$GeneID %in% Query_DESeq2$GeneID,]
+
+#Merge to keep only the  total genes present in both cuffdiff and DESeq2 and also be able to obtain gene symbols via cuffdiff results
+Crispr_cuffDes <- merge(commonCrispr_All_Cuffdiff_DESeq2[,c(1,3,10,13)], commonCrispr_All_DESEq2_Cuffdiff[,c(1,3,7)])
+
+#Remove NAs from merged dataframe and rename columns
+Crispr_cuffDes <- Crispr_cuffDes[complete.cases(Crispr_cuffDes),]
+Crispr_cuffDes <- rename(Crispr_cuffDes, c("q_value" = "Cuffdiff_adjp", "padj" = "DESeq2_adjp"))
+Crispr_cuffDes <- rename(Crispr_cuffDes, c("log2.fold_change." = "log2FC_Cuffdiff", "log2FoldChange" = "log2FC_DESeq2"))
+
+#correlation coefficient, linear model fit and confident interval of fit. 
+cor(Crispr_cuffDes$Cuffdiff_adjp, Crispr_cuffDes$DESeq2_adjp, use = "complete.obs")
+
+fitCrispr <- lm(Cuffdiff_adjp ~ DESeq2_adjp, data=Crispr_cuffDes)
+fitCrispr
+confint(fitCrispr)
+summary(fitCrispr)
+
+#log plot of cuffdiff adjusted P versus DESeq2 adjusted P 
+ggplot(data = Crispr_cuffDes, aes(x = log(Cuffdiff_adjp), y = log(DESeq2_adjp))) + geom_point(shape = 21) + geom_smooth(method=lm, se=FALSE)
+#From the graph as seen in the retina and RCS samples, the P values determined by Cuffdiff were in general higher than those determined DESeq2 in crispr samples.  There was not a strong trend on visual inspection and R2 was small when all the genes (complete cases in both datasets) were accounted for: adjusted R-squared: 0.2796  
+
+###Compare fold change values between Cuffdiff and DESeq2 for genes with adjusted p-values < 2 and linear fold change of at least 2.
+
+#convert characters to NA from log2FC_cuffdiff and remove NAs.
+Crispr_cuffDes$log2FC_Cuffdiff <- as.numeric(as.character(Crispr_cuffDes$log2FC_Cuffdiff))
+Crispr_cuffDes <- Crispr_cuffDes[complete.cases(Crispr_cuffDes),]
+
+#convert infinite values to NA from log2FC_cuffdiff and remove NAs.
+is.na(Crispr_cuffDes) <- sapply(Crispr_cuffDes, is.infinite)
+Crispr_cuffDes <- Crispr_cuffDes[complete.cases(Crispr_cuffDes),]
+
+#Filter for genes with log2 fold change > 1 using both Cuffdiff and DESeq2
+Crispr_cuffDes_FC <- filter(Crispr_cuffDes, abs(log2FC_Cuffdiff) > 1 & abs(log2FC_DESeq2) > 1)
+
+#Filter for genes with log2 fold change > 1 and adjusted p-value < 0.05 using both Cuffdiff and DESeq2
+Crispr_cuffDes_FC_Sig <- filter(Crispr_cuffDes_FC, Cuffdiff_adjp < 0.05 & DESeq2_adjp < 0.05)
+#45 genes in crispr samples had a log2 fold change of 1 (linear fold change of 2) and an adjusted pvalue of 0.05 in both cuffdiff and Deseq2 in wild versus mutants. 
+
+ggplot(data = Crispr_cuffDes_FC_Sig, aes(x = log2FC_Cuffdiff, y = log2FC_DESeq2)) + geom_point(shape = 21) + geom_smooth(method=lm, se=FALSE) + theme(axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20))
+
+cor(Crispr_cuffDes_FC_Sig$log2FC_Cuffdiff, Crispr_cuffDes_FC_Sig$log2FC_DESeq2, use = "complete.obs")
+#The correlation for log2FC between cuffdiff and DESeq2 was very strong with these genes in Crispr samples. 
+
+fit2Crispr <- lm(log2FC_Cuffdiff ~ log2FC_DESeq2, data=Crispr_cuffDes_FC_Sig)
+fit2Crispr
+confint(fit2Crispr)
+summary(fit2Crispr)
+#adjusted R-squared = 0.7753
+
+#As in the case for retina and RCS, comparing genes from crispr samples that were statistically significant as well as having a fold change > 2 resulted in a stronger correlation and therefore agreement between cuffdiff and DESEq2 than comparing all genes.
+
+```
+
+####Overlap of DE genes Crispr gene and Retina 
+```{r}
+venn(list("top Query gene DESeq2 and cuffdiff" = Crispr_cuffDes_FC_Sig$GeneID, "top Retina DESeq2 and Cuffdiff" = PR_cuffDes_FC_Sig$GeneID))
+CommonQuery_Retina_CuffDes <- Crispr_cuffDes_FC_Sig[Crispr_cuffDes_FC_Sig$GeneID %in% PR_cuffDes_FC_Sig$GeneID,]
+CommonQuery_Retina_CuffDes
+#There were 3 genes that were differentially expressed between crispr gene and Retina in agreement between cuffdiff and DESEq2 methods when adjusted for fold change > 2.  
+```
+
+####Overlap of DE genes Crispr genes and RCS 
+```{r}
+venn(list("top Query gene DESeq2 and cuffdiff" = Crispr_cuffDes_FC_Sig$GeneID, "top RCS DESeq2 and Cuffdiff" = PRCS_cuffDes_FC_Sig$GeneID))
+CommonQuery_RCS_CuffDes <- Crispr_cuffDes_FC_Sig[Crispr_cuffDes_FC_Sig$GeneID %in% PRCS_cuffDes_FC_Sig$GeneID,]
+#There were no genes DE common in crispr gene as well as RCS at the interception of cuffdiff and DESEq2 when adjusted for fold change > 2. 
+```
+
+
+##Conclusions
+Comparing DESEQ2 and Cuffdiff I found a significant agreement for differentially expressed genes that also had a fold change greater than 2 in retina, RCS and crispr gene knockout of interest.  Comparing gene knockout to AMD eyes resulted in three genes in agreement between cuffdiff and deseq2 for differential expression in gene of interest and retina.  Based on the function of these genes, our results suggest that our crispr knockout gene might be implicated in cell adhesion and migration, and in cytokine response in immune system.  Further studies in underway to validate results with increase in the number of biological replicates and in investigating biological pathways through which knockout gene of interest might be implicated in AMD. 
+
+
 
 
