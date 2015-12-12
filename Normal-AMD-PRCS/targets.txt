@@ -1,0 +1,13 @@
+files	group	description
+TR2-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR6-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR8-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR10-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR12-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR14-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR16-HTseq-reverse.txt	NPRPEC	NormalPeripheralRPE-Choroid
+TR18-HTseq-reverse.txt	AMDPRPEC	AMDPeripheralRPE-Choroid
+TR20-HTseq-reverse.txt	AMDPRPEC	AMDPeripheralRPE-Choroid
+TR22-HTseq-reverse.txt	AMDPRPEC	AMDPeripheralRPE-Choroid
+TR24-HTseq-reverse.txt	AMDPRPEC	AMDPeripheralRPE-Choroid
+TR26-HTseq-reverse.txt	AMDPRPEC	AMDPeripheralRPE-Choroid
